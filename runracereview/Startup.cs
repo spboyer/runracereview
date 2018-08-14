@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using runracereview.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.InteropServices;
 
 namespace runracereview
 {
@@ -35,14 +36,22 @@ namespace runracereview
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                }
+                else
+                {
+                    options.UseSqlite("Data Source=runracereview.db");
+                }
+            });
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication()
-                .AddFacebook(fb => 
+                .AddFacebook(fb =>
                 {
                     fb.AppId = Configuration["Authentication:Facebook:AppId"];
                     fb.AppSecret = Configuration["Authentication:Facebook:AppSecret"];

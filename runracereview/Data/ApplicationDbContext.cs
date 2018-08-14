@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using runracereview.Model;
 
 namespace runracereview.Data
 {
@@ -12,5 +13,7 @@ namespace runracereview.Data
             : base(options)
         {
         }
-    }
+
+        public DbSet<Race> Race{ get; set; }
+  }
 }
