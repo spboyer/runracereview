@@ -35,32 +35,33 @@ namespace runracereview
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                }
-                else
-                {
-                    options.UseSqlite("Data Source=runracereview.db");
-                }
-            });
+            // If it is decided to use EF and/or Identity Auth
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //{
+            //    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            //    {
+            //        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            //    }
+            //    else
+            //    {
+            //        options.UseSqlite("Data Source=runracereview.db");
+            //    }
+            //});
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthentication()
-                .AddFacebook(fb =>
-                {
-                    fb.AppId = Configuration["Authentication:Facebook:AppId"];
-                    fb.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-                })
-                .AddGoogle(g =>
-                {
-                    g.ClientId = Configuration["Authentication:Google:ClientId"];
-                    g.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                });
+            //services.AddAuthentication()
+            //    .AddFacebook(fb =>
+            //    {
+            //        fb.AppId = Configuration["Authentication:Facebook:AppId"];
+            //        fb.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //    })
+            //    .AddGoogle(g =>
+            //    {
+            //        g.ClientId = Configuration["Authentication:Google:ClientId"];
+            //        g.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //    });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
