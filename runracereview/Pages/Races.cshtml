@@ -1,0 +1,16 @@
+@page
+@model RacesModel
+@{
+    ViewData["Title"] = "Races page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <ul>
+    @foreach(var race in Model.Races)
+    {
+        <li>@race.Name</li>
+    }
+    </ul>
+</div>

@@ -70,6 +70,9 @@ namespace runracereview
         options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
         options.Database = Configuration.GetSection("MongoDb:Database").Value;
       });
+
+      services.AddTransient<Model.IApplicationDbContext, Model.ApplicationDbContext>();
+      services.AddTransient<Model.IRaceRepository, Model.RaceRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
