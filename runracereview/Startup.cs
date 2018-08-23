@@ -69,6 +69,8 @@ namespace runracereview
       {
         options.ConnectionString = Configuration.GetSection("MongoDb:ConnectionString").Value;
         options.Database = Configuration.GetSection("MongoDb:Database").Value;
+        options.Container = Configuration.GetSection("MongoDb:Container").Value;
+        options.IsContained = Configuration["DOTNET_RUNNING_IN_CONTAINER"] != null;
       });
 
       services.AddTransient<Model.IApplicationDbContext, Model.ApplicationDbContext>();

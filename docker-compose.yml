@@ -21,6 +21,7 @@ services:
     container_name: mongo
     image: mongo
     volumes:
-      - ./data:/data/db
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+      #- ./data:/data/db
     ports:
       - "27017:27017"
