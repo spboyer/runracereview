@@ -7,8 +7,8 @@ namespace runracereview.Model
   {
     Task<IEnumerable<Race>> GetAllRaces();
     Task<Race> GetRace(string name);
-    Task Create(Race game);
-    Task<bool> Update(Race game);
+    Task Create(Race race);
+    Task<bool> Update(Race race);
     Task<bool> Delete(string name);
   }
 }

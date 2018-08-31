@@ -13,8 +13,7 @@ namespace runracereview.Model
 
     // mongodb stores dates in UTC format date before storing.
     [BsonElement("raceDate")]
-    [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-    public DateTime RaceDate { get; set; }
+    public DateTimeOffset RaceDate { get; set; }
 
     [BsonElement("location")]
     public string Location { get; set; }
@@ -37,6 +36,6 @@ namespace runracereview.Model
     public string Url { get; set; }
 
     [BsonElement("created")]
-    public DateTime Created { get; set; }
+    public DateTimeOffset Created { get; set; }
   }
 }

@@ -97,6 +97,23 @@ namespace runracereview
 
       app.UseMvc();
 
+      // Check and Seed the database
+      CheckandSeed(app.ApplicationServices);
+
+    }
+
+    private void CheckandSeed(IServiceProvider services)
+    {
+      using (var scope = services.CreateScope())
+      {
+        var db = scope.ServiceProvider.GetService<Model.IRaceRepository>();
+
+        if (db.GetAllRaces().Result.Count() == 0)
+        {
+          var loader = new Model.RaceLoader(db);
+          loader.LoadData();
+        }
+      }
     }
   }
 }
