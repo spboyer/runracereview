@@ -35,6 +35,10 @@ namespace runracereview.Model
     [BsonElement("url")]
     public string Url { get; set; }
 
+    public string MainImage { get; set; }
+
+    public bool Demo { get; set; }
+
     [BsonElement("created")]
     public DateTimeOffset Created { get; set; }
   }

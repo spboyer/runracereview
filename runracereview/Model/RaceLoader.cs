@@ -27,6 +27,8 @@ namespace runracereview.Model
       .RuleFor(r => r.Country, "United States")
       .RuleFor(r => r.Location, f => f.Address.StreetAddress())
       .RuleFor(r => r.State, f => f.Address.State())
+      .RuleFor(r => r.Demo, true)
+      .RuleFor(r => r.MainImage, GetRandomImage)
       .RuleFor(r => r.Name, f => string.Concat(f.Company.CatchPhrase(), " Race"));
 
       var races = faker.Generate(50);
@@ -34,5 +36,15 @@ namespace runracereview.Model
       races.ForEach(race => _repository.Create(race));
 
     }
+
+    private string GetRandomImage()
+    {
+      var rnd = new System.Random();
+      int val = rnd.Next(0, Int32.MaxValue);
+
+      return $"https://source.unsplash.com/random/250x250&{val}";
+
+    }
+
   }
 }

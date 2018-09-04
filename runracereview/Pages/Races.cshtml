@@ -6,11 +6,19 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<div>
-    <ul>
+<div class="card-columns">
     @foreach(var race in Model.Races)
     {
-        <li>@race.Name</li>
+        <div class="card">
+
+            <img class="card-img-top" src="@race.MainImage" width="250" height="250" alt="">
+           <div class="card-body">
+            <h5 class="card-title">@race.Name</h5>
+            <p class="card-text"></p>
+            </div>
+            <div class="card-footer">
+            <small class="text-muted">Rated: </small>
+            </div>
+        </div>
     }
-    </ul>
 </div>
