@@ -17,7 +17,12 @@
             <p class="card-text"></p>
             </div>
             <div class="card-footer">
-            <small class="text-muted">Rated: </small>
+            <small class="text-muted">Rated:
+                @for(int i = 0; i < race.AverageRating; i++)
+                {
+                    <span class="fa fa-star checked"></span>
+                }
+            </small>
             </div>
         </div>
     }

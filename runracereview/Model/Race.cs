@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -35,11 +36,27 @@ namespace runracereview.Model
     [BsonElement("url")]
     public string Url { get; set; }
 
+    [BsonElement("mainImage")]
     public string MainImage { get; set; }
 
+    [BsonElement("demo")]
     public bool Demo { get; set; }
 
     [BsonElement("created")]
     public DateTimeOffset Created { get; set; }
+
+    [BsonElement("reviews")]
+    public Review[] Reviews { get; set; }
+
+    [BsonElement("pictures")]
+    public Picture[] Pictures { get; set; }
+
+    public int AverageRating
+    {
+      get
+      {
+        return Convert.ToInt32(Math.Round(Reviews.Average(r => r.Stars), 0));
+      }
+    }
   }
 }

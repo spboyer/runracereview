@@ -37,11 +37,8 @@ namespace runracereview.Model
       ReplaceOneResult updateResult =
       await _context
       .Races
-      .ReplaceOneAsync(
-      filter: g => g.Id == race.Id,
-      replacement: race);
-      return updateResult.IsAcknowledged
-      && updateResult.ModifiedCount > 0;
+      .ReplaceOneAsync( filter: g => g.Id == race.Id, replacement: race);
+      return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
     }
     public async Task<bool> Delete(string name)
     {
@@ -49,8 +46,7 @@ namespace runracereview.Model
       DeleteResult deleteResult = await _context
       .Races
       .DeleteOneAsync(filter);
-      return deleteResult.IsAcknowledged
-      && deleteResult.DeletedCount > 0;
+      return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
     }
   }
 }

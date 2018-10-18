@@ -53,6 +53,10 @@ a.navbar-brand {
   font-size: 1rem;
 }
 
+.checked {
+  color: orange;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
