@@ -10,7 +10,7 @@ namespace runracereview
     {
       get
       {
-        if (IsContained) { return Container; }
+        if (IsContained && Development) { return Container; }
         return _connectionString;
       }
       set { _connectionString = value; }
@@ -19,6 +19,8 @@ namespace runracereview
     public string Container { get; set; }
 
     public bool IsContained { get; set; }
+
+    public bool Development { get; set; }
 
   }
 }
